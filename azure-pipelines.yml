@@ -24,6 +24,5 @@ steps:
 - task: NexusIqPipelineTask@1
   inputs:
     nexusIqService: 'IQ Server'
-    organizationId: 'azure-pipeline-test'
     applicationId: 'azure-pipeline-test'
     stage: 'Build'
