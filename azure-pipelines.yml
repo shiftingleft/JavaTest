@@ -24,7 +24,7 @@ steps:
 - task: NexusIqPipelineTask@1
   inputs:
     nexusIqService: 'IQ Server'
-    applicationId: 'azure-pipeline-test'
+    applicationId: 'azure-pipeline-demo'
     stage: 'Build'
 
 - task: PublishPipelineArtifact@1
