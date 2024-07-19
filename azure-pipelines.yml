@@ -27,9 +27,8 @@ steps:
     applicationId: 'azure-pipeline-demo'
     stage: 'Build'
     iqScanPatterns: '**/target/sonatype-clm/module.xml'
-    callflow: |
-      enable: true
-      includes: '**/target/*-dist.zip'
+    enableCallFlow: true
+    callFlowIncludes: '**/target/*-dist.zip'
 
 - task: PublishPipelineArtifact@1
   inputs:
