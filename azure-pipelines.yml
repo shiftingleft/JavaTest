@@ -26,9 +26,7 @@ steps:
     nexusIqService: 'IQ Server'
     applicationId: 'azure-pipeline-demo'
     stage: 'Build'
-    iqScanPatterns: '**/target/sonatype-clm/module.xml'
-    enableCallFlow: true
-    callFlowIncludes: '**/target/*-dist.zip'
+
 
 - task: PublishPipelineArtifact@1
   inputs:
