@@ -27,12 +27,12 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- task: NexusIqPipelineTask@1
+- task: NexusIqPipelineTask@2
   inputs:
     nexusIqService: 'IQ Server'
-    applicationId: 'azure-pipeline-demo'
+    applicationId: 'module-xml-test'
     stage: 'Build'
-
+    scanTargets: '*'
 
 - task: PublishPipelineArtifact@1
   inputs:
