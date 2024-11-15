@@ -39,6 +39,13 @@ steps:
 - script: sleep 5
   displayName: 'Wait for 5 seconds'
 
+- task: NexusIqPipelineTask@2
+  inputs:
+    nexusIqService: 'IQ Server'
+    applicationId: 'target-and-module-xml-test'
+    stage: 'Build'
+    scanTargets: '$(System.DefaultWorkingDirectory)/target/**/*, $(System.DefaultWorkingDirectory)/target/sonatype-clm/module.xml'
+
 # Publish pipeline artifact
 - task: PublishPipelineArtifact@1
   inputs:
