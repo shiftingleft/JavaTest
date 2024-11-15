@@ -44,7 +44,7 @@ steps:
     nexusIqService: 'IQ Server'
     applicationId: 'target-and-module-xml-test'
     stage: 'Build'
-    scanTargets: '$(System.DefaultWorkingDirectory)/target/**/*, $(System.DefaultWorkingDirectory)/target/sonatype-clm/module.xml'
+    scanTargets: '$(System.DefaultWorkingDirectory)/target/**/*'
 
 # Publish pipeline artifact
 - task: PublishPipelineArtifact@1
