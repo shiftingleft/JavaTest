@@ -10,6 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+# Maven build step
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -21,19 +22,33 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+# Java tool installer step
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '17'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
+# List contents of target directory to verify build output
+- script: |
+    echo "Listing contents of target directory:"
+    ls -R $(System.DefaultWorkingDirectory)/target
+  displayName: 'Verify target directory contents before Nexus IQ scan'
+
+# Optional wait if needed
+- script: sleep 5
+  displayName: 'Wait for 5 seconds'
+
+# Nexus IQ scan task
 - task: NexusIqPipelineTask@2
   inputs:
-    nexusIqService: 'IQ Server'
+    nexusIqService: 'IQ Server'  # Use "IQ Server" without a hyphen
     applicationId: 'module-xml-test'
     stage: 'Build'
-    scanTargets: '$(System.DefaultWorkingDirectory)/target'  # Specify the target folder here
+    scanTargetPatterns: '$(System.DefaultWorkingDirectory)/target'
+    scanPipelineWorkspace: false
 
+# Publish pipeline artifact
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
