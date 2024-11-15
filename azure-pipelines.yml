@@ -39,13 +39,12 @@ steps:
 - script: sleep 5
   displayName: 'Wait for 5 seconds'
 
-# Nexus IQ scan task
 - task: NexusIqPipelineTask@2
   inputs:
-    nexusIqService: 'IQ Server'  # Use "IQ Server" without a hyphen
+    nexusIqService: 'IQ Server'
     applicationId: 'module-xml-test'
     stage: 'Build'
-    scanTargetPatterns: '$(System.DefaultWorkingDirectory)/target'
+    scanTargetPatterns: '$(System.DefaultWorkingDirectory)/target/**/*'
     scanPipelineWorkspace: false
 
 # Publish pipeline artifact
